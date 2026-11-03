@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мирочка приглашает!</title>
+
+<!-- Open Graph / Превью ссылки -->
+<meta property="og:title" content="Мирочка приглашает!">
+<meta property="og:description" content="Приглашение на день рождения Мирославы! 4 годика · 12 декабря · балет Щелкунчик">
+<meta property="og:image" content="https://miroslavasysoeva.ru/og_preview.jpg?v=9">
+<meta property="og:image:secure_url" content="https://miroslavasysoeva.ru/og_preview.jpg?v=9">
+<meta property="og:image:width" content="968">
+<meta property="og:image:height" content="504">
+<meta property="og:image:alt" content="Приглашение на день рождения Мирославы">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://miroslavasysoeva.ru">
+<meta property="og:site_name" content="Приглашение на день рождения">
+<meta name="description" content="Приглашение на день рождения Мирославы! 4 годика · 12 декабря · балет Щелкунчик">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Мирочка приглашает!">
+<meta name="twitter:description" content="Приглашение на день рождения Мирославы! 4 годика · 12 декабря · балет Щелкунчик">
+<meta name="twitter:image" content="https://miroslavasysoeva.ru/og_preview.jpg?v=9">
+<meta name="theme-color" content="#b39ddb">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<!-- VK / Mail.ru / MAX -->
+<link rel="image_src" href="https://miroslavasysoeva.ru/og_preview.jpg?v=9">
+<meta name="mrc-shareable" content="true">
+<meta name="mrc-video" content="false">
+<link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --env: #c8b8e0;
+    --env-dark: #b0a0d0;
+    --env-darker: #9a88c0;
+    --lilac: #b39ddb;
+    --lilac-dark: #7a5195;
+    --lilac-deep: #5e3c7a;
+    --gold: #b8b8c8;
+    --cream: #fffaf0;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Comfortaa', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #d9c6ee;
+    min-height: 100vh;
+    padding: 16px 12px 40px;
+  }
+  .wrap {
+    max-width: 400px;
+    margin: 0 auto;
+    background: rgba(255,250,240,0.85);
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 20px 60px rgba(60,30,90,0.5);
+    position: relative;
+  }
+
+
+
+  /* ===== Конверт 1в1 как на референсе ===== */
+  .env {
+    position: relative;
+    height: 240px;
+    background: var(--env);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    box-shadow: 0 10px 30px rgba(60,30,90,0.35);
+    transform: translateZ(0);
+  }
+  .env.open { overflow: visible; }
+
+  /* Карточка */
+  .card {
+    position: absolute;
+    top: 10px; left: 12px; right: 12px;
+    background: var(--cream);
+    border-radius: 10px;
+    max-height: 210px;
+    overflow: hidden;
+    transition: top 0.9s ease 0.3s, max-height 1s ease 0.3s;
+    text-align: center;
+    z-index: 1;
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+  }
+  .env.open .card {
+    top: -45px;
+    max-height: 3000px;
+    overflow-y: auto;
+  }
+
+  .card-head {
+    background: linear-gradient(135deg, var(--lilac), var(--lilac-dark));
+    color: #fff;
+    padding: 16px 12px 12px;
+  }
+  .card-head h1 {
+    font-family: 'Marck Script', cursive;
+    font-size: clamp(1.7rem, 6vw, 2.1rem);
+    margin-top: 8px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  .avatar {
+    width: 150px; height: 170px;
+    margin: 6px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--gold);
+    box-shadow: 0 6px 18px rgba(94,60,122,0.4);
+  }
+  .avatar img { width:100%; height:100%; object-fit:cover; }
+
+  /* Клапан — подложка + треугольник как на референсе */
+  .env-flap {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 120px;
+    background: var(--env-dark);
+    z-index: 10;
+    transition: top 0.6s ease, opacity 0.5s ease;
+  }
+  .env-flap::after {
+    content: "";
+    position: absolute;
+    bottom: -50px; left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 200px solid transparent;
+    border-right: 200px solid transparent;
+    border-top: 50px solid var(--env-dark);
+  }
+  .env.open .env-flap {
+    top: -120px;
+    opacity: 0;
+  }
+
+  /* Нижняя часть конверта */
+  .env-front {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    background: var(--env);
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: opacity 0.4s;
+    transform: translateZ(0);
+  }
+  .env.open .env-front { opacity: 0; }
+
+  /* Сердечко-стикер */
+  .seal-wrap {
+    position: absolute;
+    top: 108px; left: 50%;
+    transform: translateX(-50%);
+    width: 58px; height: 58px;
+    z-index: 12;
+    cursor: pointer;
+    transition: top 0.6s ease, opacity 0.5s ease;
+    filter: none;
+  }
+  .env.open .seal-wrap {
+    top: -60px;
+    opacity: 0;
+  }
+  .seal-wrap svg { width: 100%; height: 100%; display: block; }
+
+  /* Подпись под сердечком */
+  .seal-label {
+    position: absolute;
+    top: 152px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Marck Script', cursive;
+    font-size: 0.8rem;
+    color: var(--lilac-deep);
+    opacity: 0.7;
+    z-index: 5;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    white-space: nowrap;
+  }
+  .env.open .seal-label { opacity: 0; }
+
+  /* Секции */
+  .section {
+    padding: 14px 16px 6px;
+    font-size: clamp(0.88rem, 3.5vw, 0.95rem);
+    color: #5a4a6a;
+    line-height: 1.6;
+  }
+  .section + .section { border-top: 1px dashed var(--gold); margin-top: 8px; }
+  .icon { font-size: 1.8rem; margin-bottom: 6px; display: block; }
+
+  /* Календарь */
+  .cal-wrap { text-align: center; }
+  .cal {
+    display: inline-grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    background: #fff;
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    padding: 8px;
+    margin: 10px auto;
+    max-width: 220px;
+    box-shadow: 0 4px 10px rgba(94,60,122,0.15);
+  }
+  .cal-head {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, var(--lilac), var(--lilac-dark));
+    color: #fff; font-weight: bold;
+    padding: 6px; font-size: 0.85rem;
+    letter-spacing: 2px; border-radius: 5px;
+    margin-bottom: 4px;
+  }
+  .cal-d { font-size: 0.62rem; color: #9788a5; text-align: center; font-weight: bold; padding: 3px 0; }
+  .cal-n { font-size: 0.72rem; text-align: center; padding: 4px 0; color: #5a4a6a; }
+  .cal-today {
+    color: #fff; font-weight: bold;
+    position: relative;
+  }
+  .cal-today .heart-bg {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.8rem;
+    z-index: 1;
+    animation: heartbeat 1.3s ease-in-out infinite;
+    color: #e75480;
+  }
+  .cal-today .dnum {
+    position: relative;
+    z-index: 2;
+    font-size: 0.72rem;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: translate(-50%, -50%); opacity: 1; }
+    50% { transform: translate(-50%, -50%); opacity: 0.6; }
+  }
+  .cal-caption {
+    font-family: 'Marck Script', cursive;
+    font-size: clamp(1.15rem, 4vw, 1.35rem);
+    color: var(--lilac-deep);
+    margin-top: 8px;
+  }
+
+  /* Кнопки */
+  .btn-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 12px 0; }
+  .btn {
+    font-family: 'Marck Script', cursive;
+    font-size: clamp(0.95rem, 4vw, 1.1rem);
+    font-weight: bold;
+    padding: 10px 22px; border-radius: 999px;
+    border: none; cursor: pointer; min-height: 44px;
+    transition: transform 0.15s;
+  }
+  .btn:active { opacity: 0.85; }
+  .btn-yes {
+    background: linear-gradient(135deg, var(--lilac), var(--lilac-dark));
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(122,81,149,0.35);
+  }
+  .btn-no {
+    background: linear-gradient(135deg, #fff, #f5f2f8);
+    color: var(--lilac-deep);
+    box-shadow: 0 4px 12px rgba(94,60,122,0.15);
+  }
+  .rsvp-result { margin-top: 10px; font-weight: bold; color: #c0392b; min-height: 1.2em; }
+
+  .allergy-box { margin-top: 10px; }
+  .allergy-box textarea {
+    width: 100%; padding: 10px 12px;
+    border: 1.5px solid var(--lilac); border-radius: 10px;
+    font-family: 'Comfortaa', sans-serif; font-size: 0.88rem;
+    resize: none; color: #5a4a6a; background: #fdfaff;
+  }
+  .allergy-box textarea:focus { outline: none; border-color: var(--gold); }
+  .allergy-box .btn-send {
+    margin-top: 8px;
+    background: linear-gradient(135deg, #e0e0f0, #c8c8d8);
+    color: var(--lilac-deep);
+    box-shadow: 0 4px 12px rgba(184,184,200,0.3);
+  }
+  .allergy-result { margin-top: 8px; font-size: 0.85rem; color: var(--lilac-dark); font-weight: bold; }
+
+  .sign {
+    padding: 16px;
+    font-family: 'Marck Script', cursive;
+    font-size: clamp(1.4rem, 5vw, 1.7rem);
+    color: var(--lilac-deep);
+    text-align: center;
+  }
+
+  .map-link {
+    display: inline-block; margin-top: 8px;
+    background: rgba(255,250,240,0.9);
+    border: 1.5px dashed var(--gold);
+    border-radius: 999px; padding: 6px 18px;
+    color: var(--lilac-deep); text-decoration: none;
+    font-family: 'Marck Script', cursive;
+    font-size: clamp(1rem, 4vw, 1.15rem);
+  }
+  .map-link:active { background: var(--lilac); color: #fff; }
+
+  /* Confetti */
+  .confetti {
+    position: fixed; top: -20px; font-size: 22px;
+    pointer-events: none; animation: fall linear forwards;
+    z-index: 100;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(720deg); opacity: 0.4; }
+  }
+
+  @media (max-width: 400px) {
+    body { padding: 10px 6px 30px; }
+    .wrap { padding: 12px 10px; }
+    .env { height: 220px; }
+    .avatar { width: 135px; height: 155px; }
+    .section { padding: 12px 12px 4px; }
+    .sign { padding: 12px; }
+  }
+</style>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+
+<meta itemprop="name" content="Мирочка приглашает!">
+<meta itemprop="description" content="Приглашение на день рождения Мирославы! 4 годика · 12 декабря · балет Щелкунчик">
+<meta itemprop="image" content="https://miroslavasysoeva.ru/og_preview.jpg?v=9">
+
+<div class="wrap">
+  <div class="env" id="env">
+    <div class="card" id="card">
+      <div class="card-head">
+        <div class="avatar"><img src="avatar_processed.png?v=25" alt="Мирослава"></div>
+        <h1>Мне 4 годика!</h1>
+      </div>
+
+      <div class="section">
+        <span class="icon">✨</span>
+        <p>Привет, мой друг! Приглашаю тебя на свой день рождения! Будем танцевать, слушать музыку, мастерить и пить чай с именинным тортом!</p>
+      </div>
+
+      <div class="section">
+        <div class="cal-wrap">
+          <div class="cal">
+            <div class="cal-head">ДЕКАБРЬ</div>
+            <div class="cal-d">Пн</div><div class="cal-d">Вт</div><div class="cal-d">Ср</div><div class="cal-d">Чт</div><div class="cal-d">Пт</div><div class="cal-d">Сб</div><div class="cal-d">Вс</div>
+            <div></div><div class="cal-n">1</div><div class="cal-n">2</div><div class="cal-n">3</div><div class="cal-n">4</div><div class="cal-n">5</div><div class="cal-n">6</div>
+            <div class="cal-n">7</div><div class="cal-n">8</div><div class="cal-n">9</div><div class="cal-n">10</div><div class="cal-n">11</div>
+            <div class="cal-n cal-today"><span class="heart-bg">❤</span><span class="dnum">12</span></div><div class="cal-n">13</div>
+            <div class="cal-n">14</div><div class="cal-n">15</div><div class="cal-n">16</div><div class="cal-n">17</div><div class="cal-n">18</div><div class="cal-n">19</div>
+            <div class="cal-n">20</div><div class="cal-n">21</div><div class="cal-n">22</div><div class="cal-n">23</div><div class="cal-n">24</div><div class="cal-n">25</div>
+            <div class="cal-n">26</div><div class="cal-n">27</div><div class="cal-n">28</div><div class="cal-n">29</div><div class="cal-n">30</div><div class="cal-n">31</div>
+          </div>
+        </div>
+        <div class="cal-caption">12 декабря · начало в 16:00</div>
+      </div>
+
+      <div class="section">
+        <p><b>Кафе Чайкоффский</b></p>
+        <p style="font-size:0.82rem;color:#9788a5;font-style:italic;">м. Речной вокзал, ул. Флотская</p>
+        <a href="https://yandex.ru/maps/search/Кафе Чайкоффский м Речной вокзал ул Флотская" target="_blank" class="map-link">🗺 Открыть на карте</a>
+      </div>
+
+      <div class="section">
+        <span class="icon">🎭</span>
+        <p><b>В программе:</b></p>
+        <ul style="list-style:none;padding:0;margin-top:8px;line-height:1.9;">
+          <li>🎵 Музыкальный спектакль по мотивам Щелкунчика с живой музыкой</li>
+          <li>🎨 Создание праздничного стаканчика для напитков</li>
+          <li>🧁 Угощение и напитки</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <span class="icon">🎀</span>
+        <p><b>Дресс-код:</b> одевай что-то удобное, но нарядное! Принцессы и щелкунчики — welcome</p>
+      </div>
+
+      <div class="section">
+        <span class="icon">🎁</span>
+        <p><b>Wishlist</b></p>
+        <p style="font-size:0.82rem;color:#9788a5;margin-top:6px;">Если хочешь сделать подарок — вот подсказка:</p>
+        <a href="https://wishlist-88d58.web.app/JvPw7QeWzdMg3b2qO2zJ8KfG0wO2/iZU5MAgzSjTYkc7RgSPV/9606b931-911a-44e8-8059-0087c259f7ae" target="_blank" class="map-link">🎁 Открыть вишлист</a>
+      </div>
+
+      <div class="section">
+        <span class="icon">🎂</span>
+        <p><b>Придёшь?</b></p>
+        <div class="btn-row">
+          <button class="btn btn-yes" onclick="rsvp(true)">Да, приду!</button>
+          <button class="btn btn-no" onclick="rsvp(false)">К сожалению, нет</button>
+        </div>
+        <div class="rsvp-result" id="rsvpR"></div>
+      </div>
+
+      <div class="section">
+        <span class="icon">🥐</span>
+        <p><b>Есть ли у тебя аллергия?</b><br>Если да — напиши, пожалуйста:</p>
+        <div class="allergy-box">
+          <textarea id="allergyT" rows="2" placeholder="Например: на орехи, клубнику..."></textarea>
+          <button class="btn btn-send" onclick="sendAllergy()">Отправить 💫</button>
+          <div class="allergy-result" id="allergyR"></div>
+        </div>
+      </div>
+
+      <div class="sign">
+        Жду тебя с нетерпением!<br>
+        Мирослава <span style="color:#c0392b;">❤</span>
+      </div>
+
+    </div>
+
+    <!-- Клапан CSS border triangle -->
+    <div class="env-flap" id="flap"></div>
+
+    <!-- Сердечко-стикер -->
+    <div class="seal-wrap" id="seal" onclick="setOpen(true)">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="heartGrad" cx="30%" cy="30%" r="70%">
+            <stop offset="0%" style="stop-color:#ff8fa3"/>
+            <stop offset="50%" style="stop-color:#e75480"/>
+            <stop offset="100%" style="stop-color:#c23b61"/>
+          </radialGradient>
+
+        </defs>
+        <path d="M50 88 C50 88, 10 60, 10 35 C10 18, 23 8, 35 8 C42 8, 47 13, 50 18 C53 13, 58 8, 65 8 C77 8, 90 18, 90 35 C90 60, 50 88, 50 88 Z" fill="url(#heartGrad)"/>
+        <ellipse cx="32" cy="28" rx="10" ry="6" fill="#fff" opacity="0.25" transform="rotate(-25 32 28)"/>
+        <text x="50" y="48" text-anchor="middle" fill="#fff" font-family="'Marck Script', cursive" font-size="12" font-weight="bold" opacity="0.95">Открой</text>
+        <text x="50" y="64" text-anchor="middle" fill="#fff" font-family="'Comfortaa', sans-serif" font-size="9" font-weight="bold" letter-spacing="1" opacity="0.9">скорее!</text>
+      </svg>
+    </div>
+    <div class="seal-label">нажми, чтобы открыть</div>
+
+    <!-- Нижняя часть конверта -->
+    <div class="env-front" id="front"></div>
+  </div>
+
+  <div style="text-align:center;margin-top:10px;font-family:'Marck Script',cursive;font-size:1.05rem;color:#7a5195;">
+    Нажми на сердечко, чтобы открыть ✨
+  </div>
+</div>
+
+<audio id="music" loop><source src="nutcracker_music.mp3?v=4" type="audio/mpeg"></audio>
+
+<script>
+  var opened = false;
+  var env = document.getElementById('env');
+
+  function setOpen(isOpen) {
+    opened = isOpen;
+    if (isOpen) {
+      env.classList.add('open');
+      var music = document.getElementById('music');
+      if (music) { music.volume = 0.3; music.play().catch(function(){}); }
+      dropConfetti();
+    }
+  }
+
+  function dropConfetti() {
+    var emojis = ['🩰','👑','⭐','🎀','🎊','✨','🎉','🎁','🎈','🍭'];
+    for (var i = 0; i < 35; i++) {
+      var c = document.createElement('div');
+      c.className = 'confetti';
+      c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.animationDuration = (2 + Math.random() * 2.5) + 's';
+      c.style.animationDelay = (Math.random() * 0.6) + 's';
+      document.body.appendChild(c);
+      setTimeout(function(el) { return function() { el.remove(); }; }(c), 5500);
+    }
+  }
+
+  function rsvp(yes) {
+    var res = document.getElementById('rsvpR');
+    res.textContent = yes ? 'Ура! Буду ждать встречи 🩰✨' : 'Жаль! Обнимаю тебя ❤';
+    res.style.color = yes ? '#7a5195' : '#c0392b';
+  }
+  function sendAllergy() {
+    var text = document.getElementById('allergyT').value.trim();
+    var res = document.getElementById('allergyR');
+    if (!text) { res.textContent = 'Напиши, пожалуйста, на что аллергия 🙂'; return; }
+    res.textContent = 'Спасибо! Мама передала маме Мирославы 💜';
+    document.getElementById('allergyT').value = '';
+  }
+</script>
+
+</body>
+</html>
