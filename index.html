@@ -6,7 +6,7 @@
 <title>Мирочка приглашает!</title>
 
 <!-- Open Graph / Превью ссылки -->
-<meta property="og:title" content="Приглашение на день рождения Мирославы!">
+
 <meta property="og:description" content="Приглашение на день рождения Мирославы! 4 годика · 12 декабря · балет Щелкунчик">
 <meta property="og:image" content="https://miroslavasysoeva.ru/og_preview.jpg?v=24">
 <meta property="og:image:secure_url" content="https://miroslavasysoeva.ru/og_preview.jpg?v=24">
@@ -140,6 +140,8 @@
     z-index: 20;
     cursor: pointer;
     transition: transform 0.7s ease, opacity 0.5s ease 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   .env.open .env-img {
     transform: translateY(-100%);
@@ -299,7 +301,7 @@
   <div class="env" id="env">
     <div class="card" id="card">
       <div class="card-head">
-        <div class="avatar"><img src="avatar_processed.png?v=52" alt="Мирослава"></div>
+        <div class="avatar"><img src="avatar_processed.png?v=54" alt="Мирослава"></div>
         <h1>Мне 4 годика!</h1>
       </div>
 
@@ -399,6 +401,11 @@
       dropConfetti();
     }
   }
+
+  // iOS Safari touch fix
+  env.addEventListener('touchend', function(e) {
+    if (!opened) { e.preventDefault(); setOpen(true); }
+  }, {passive: false});
 
   function dropConfetti() {
     var emojis = ['🩰','👑','⭐','🎀','🎊','✨','🎉','🎁','🎈','🍭'];
