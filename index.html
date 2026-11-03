@@ -339,7 +339,7 @@
   <div class="env" id="env">
     <div class="card" id="card">
       <div class="card-head">
-        <div class="avatar"><img src="avatar_processed.png?v=25" alt="Мирослава"></div>
+        <div class="avatar"><img src="avatar_processed.png?v=28" alt="Мирослава"></div>
         <h1>Мне 4 годика!</h1>
       </div>
 
@@ -367,7 +367,7 @@
       <div class="section">
         <p><b>Кафе Чайкоффский</b></p>
         <p style="font-size:0.82rem;color:#9788a5;font-style:italic;">м. Речной вокзал, ул. Флотская</p>
-        <a href="https://yandex.ru/maps/search/Кафе Чайкоффский м Речной вокзал ул Флотская" target="_blank" class="map-link">🗺 Открыть на карте</a>
+        <a href="https://yandex.ru/maps/-/CXrGIYpE" target="_blank" class="map-link">🗺 Открыть на карте</a>
       </div>
 
       <div class="section">
@@ -386,30 +386,22 @@
       </div>
 
       <div class="section">
-        <span class="icon">🎁</span>
-        <p><b>Wishlist</b></p>
-        <p style="font-size:0.82rem;color:#9788a5;margin-top:6px;">Если хочешь сделать подарок — вот подсказка:</p>
-        <a href="https://wishlist-88d58.web.app/JvPw7QeWzdMg3b2qO2zJ8KfG0wO2/iZU5MAgzSjTYkc7RgSPV/9606b931-911a-44e8-8059-0087c259f7ae" target="_blank" class="map-link">🎁 Открыть вишлист</a>
-      </div>
-
-      <div class="section">
-        <span class="icon">🎂</span>
-        <p><b>Придёшь?</b></p>
-        <div class="btn-row">
-          <button class="btn btn-yes" onclick="rsvp(true)">Да, приду!</button>
-          <button class="btn btn-no" onclick="rsvp(false)">К сожалению, нет</button>
-        </div>
-        <div class="rsvp-result" id="rsvpR"></div>
-      </div>
-
-      <div class="section">
-        <span class="icon">🥐</span>
-        <p><b>Есть ли у тебя аллергия?</b><br>Если да — напиши, пожалуйста:</p>
-        <div class="allergy-box">
-          <textarea id="allergyT" rows="2" placeholder="Например: на орехи, клубнику..."></textarea>
-          <button class="btn btn-send" onclick="sendAllergy()">Отправить 💫</button>
-          <div class="allergy-result" id="allergyR"></div>
-        </div>
+        <span class="icon">📝</span>
+        <p><b>Подтверди участие</b></p>
+        <form id="rsvpForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" style="margin-top:10px;text-align:left;">
+          <input type="text" name="child_name" placeholder="Имя ребёнка" required style="width:100%;padding:10px 12px;border:1.5px solid var(--lilac);border-radius:10px;font-family:'Comfortaa',sans-serif;font-size:0.88rem;color:#5a4a6a;background:#fdfaff;margin-bottom:10px;">
+          <input type="text" name="parent_name" placeholder="Имя родителя" required style="width:100%;padding:10px 12px;border:1.5px solid var(--lilac);border-radius:10px;font-family:'Comfortaa',sans-serif;font-size:0.88rem;color:#5a4a6a;background:#fdfaff;margin-bottom:10px;">
+          <input type="tel" name="phone" placeholder="Телефон для связи" required style="width:100%;padding:10px 12px;border:1.5px solid var(--lilac);border-radius:10px;font-family:'Comfortaa',sans-serif;font-size:0.88rem;color:#5a4a6a;background:#fdfaff;margin-bottom:10px;">
+          <div style="margin-bottom:10px;">
+            <label style="font-size:0.85rem;color:#5a4a6a;display:block;margin-bottom:6px;">Придёте на праздник?</label>
+            <label style="font-size:0.85rem;color:#5a4a6a;margin-right:15px;"><input type="radio" name="attending" value="Да" required style="margin-right:4px;"> Да, придём!</label>
+            <label style="font-size:0.85rem;color:#5a4a6a;"><input type="radio" name="attending" value="Нет" required style="margin-right:4px;"> К сожалению, нет</label>
+          </div>
+          <textarea name="allergy" rows="2" placeholder="Аллергии (если есть) — напиши здесь" style="width:100%;padding:10px 12px;border:1.5px solid var(--lilac);border-radius:10px;font-family:'Comfortaa',sans-serif;font-size:0.88rem;color:#5a4a6a;background:#fdfaff;margin-bottom:10px;resize:none;"></textarea>
+          <input type="hidden" name="_subject" value="Новый ответ на приглашение Мирославы!">
+          <button type="submit" class="btn btn-yes" style="width:100%;">Отправить ответ 💫</button>
+        </form>
+        <div class="rsvp-result" id="formResult" style="margin-top:10px;font-weight:bold;color:#7a5195;"></div>
       </div>
 
       <div class="sign">
@@ -480,17 +472,30 @@
     }
   }
 
-  function rsvp(yes) {
-    var res = document.getElementById('rsvpR');
-    res.textContent = yes ? 'Ура! Буду ждать встречи 🩰✨' : 'Жаль! Обнимаю тебя ❤';
-    res.style.color = yes ? '#7a5195' : '#c0392b';
-  }
-  function sendAllergy() {
-    var text = document.getElementById('allergyT').value.trim();
-    var res = document.getElementById('allergyR');
-    if (!text) { res.textContent = 'Напиши, пожалуйста, на что аллергия 🙂'; return; }
-    res.textContent = 'Спасибо! Мама передала маме Мирославы 💜';
-    document.getElementById('allergyT').value = '';
+  var form = document.getElementById('rsvpForm');
+  var formResult = document.getElementById('formResult');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response) {
+        if (response.ok) {
+          formResult.textContent = 'Спасибо! Мы получили ваш ответ 💜';
+          formResult.style.color = '#7a5195';
+          form.reset();
+        } else {
+          formResult.textContent = 'Что-то пошло не так, попробуйте ещё раз';
+          formResult.style.color = '#c0392b';
+        }
+      }).catch(function() {
+        formResult.textContent = 'Ошибка сети. Проверьте подключение.';
+        formResult.style.color = '#c0392b';
+      });
+    });
   }
 </script>
 
