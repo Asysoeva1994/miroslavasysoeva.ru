@@ -57,7 +57,6 @@
     padding: 16px;
     box-shadow: 0 20px 60px rgba(60,30,90,0.5);
     position: relative;
-    overflow: hidden;
   }
   .wrap::before {
     content: "";
@@ -78,13 +77,10 @@
     height: 293px;
     background: var(--env);
     border-radius: 12px;
-    overflow: hidden;
     margin-bottom: 14px;
     box-shadow: 0 10px 30px rgba(60,30,90,0.35);
     transform: translateZ(0);
   }
-  .env.open { overflow: visible; }
-
   /* Карточка */
   .card {
     position: absolute;
@@ -301,7 +297,7 @@
   <div class="env" id="env">
     <div class="card" id="card">
       <div class="card-head">
-        <div class="avatar"><img src="avatar_processed.png?v=54" alt="Мирослава"></div>
+        <div class="avatar"><img src="avatar_processed.png?v=56" alt="Мирослава"></div>
         <h1>Мне 4 годика!</h1>
       </div>
 
@@ -396,6 +392,13 @@
     opened = isOpen;
     if (isOpen) {
       env.classList.add('open');
+      var wrap = document.querySelector('.wrap');
+      if (wrap) {
+        setTimeout(function() {
+          var card = document.getElementById('card');
+          if (card) { wrap.style.minHeight = (card.scrollHeight + 80) + 'px'; }
+        }, 200);
+      }
       var music = document.getElementById('music');
       if (music) { music.volume = 0.3; music.play().catch(function(){}); }
       dropConfetti();
