@@ -75,6 +75,7 @@
     position: relative;
     z-index: 1;
     height: 293px;
+    transition: height 0.5s ease;
     background: var(--env);
     border-radius: 12px;
     margin-bottom: 14px;
@@ -297,7 +298,7 @@
   <div class="env" id="env">
     <div class="card" id="card">
       <div class="card-head">
-        <div class="avatar"><img src="avatar_processed.png?v=56" alt="Мирослава"></div>
+        <div class="avatar"><img src="avatar_processed.png?v=59" alt="Мирослава"></div>
         <h1>Мне 4 годика!</h1>
       </div>
 
@@ -319,7 +320,7 @@
             <div class="cal-n">26</div><div class="cal-n">27</div><div class="cal-n">28</div><div class="cal-n">29</div><div class="cal-n">30</div><div class="cal-n">31</div>
           </div>
         </div>
-        <div class="cal-caption">12 декабря · начало в 16:00</div>
+        <div class="cal-caption">12 декабря · начало в 15:30</div>
       </div>
 
       <div class="section">
@@ -339,7 +340,7 @@
 
       <div class="section">
         <span class="icon">🎀</span>
-        <p><b>Дресс-код:</b> одевай что-то удобное, но нарядное! Принцессы и щелкунчики — welcome</p>
+        <p><b>Дресс-код:</b> Приходите нарядные (и родители тоже!)! Платья, пышные юбочки, костюмы в тематике «Щелкунчик» приветствуются!</p>
       </div>
 
       <div class="section">
@@ -352,7 +353,7 @@
         <p><b>Подтверди участие</b></p>
         <form id="rsvpForm" action="https://formspree.io/f/mnppljby" method="POST" style="margin-top:10px;text-align:left;">
           <input type="text" name="child_name" placeholder="Имя ребёнка" required style="width:100%;padding:10px 12px;border:1.5px solid var(--lilac);border-radius:10px;font-family:'Comfortaa',sans-serif;font-size:0.88rem;color:#5a4a6a;background:#fdfaff;margin-bottom:10px;">
-          <input type="text" name="parent_name" placeholder="Имя родителя" required style="width:100%;padding:10px 12px;border:1.5px solid var(--lilac);border-radius:10px;font-family:'Comfortaa',sans-serif;font-size:0.88rem;color:#5a4a6a;background:#fdfaff;margin-bottom:10px;">
+          <input type="text" name="parent_name" placeholder="Имя родителя (родителей)" required style="width:100%;padding:10px 12px;border:1.5px solid var(--lilac);border-radius:10px;font-family:'Comfortaa',sans-serif;font-size:0.88rem;color:#5a4a6a;background:#fdfaff;margin-bottom:10px;">
           <input type="tel" name="phone" placeholder="Телефон для связи" required style="width:100%;padding:10px 12px;border:1.5px solid var(--lilac);border-radius:10px;font-family:'Comfortaa',sans-serif;font-size:0.88rem;color:#5a4a6a;background:#fdfaff;margin-bottom:10px;">
           <div style="margin-bottom:10px;">
             <label style="font-size:0.85rem;color:#5a4a6a;display:block;margin-bottom:6px;">Придёте на праздник?</label>
@@ -392,16 +393,23 @@
     opened = isOpen;
     if (isOpen) {
       env.classList.add('open');
-      var wrap = document.querySelector('.wrap');
-      if (wrap) {
-        setTimeout(function() {
-          var card = document.getElementById('card');
-          if (card) { wrap.style.minHeight = (card.scrollHeight + 80) + 'px'; }
-        }, 200);
-      }
       var music = document.getElementById('music');
       if (music) { music.volume = 0.3; music.play().catch(function(){}); }
       dropConfetti();
+      // iOS fix: after animation, switch card to relative so it expands the container
+      setTimeout(function() {
+        var card = document.getElementById('card');
+        if (card) {
+          card.style.position = 'relative';
+          card.style.top = '0';
+          card.style.left = '0';
+          card.style.right = '0';
+          card.style.transform = 'none';
+          card.style.maxHeight = 'none';
+        }
+        env.style.height = 'auto';
+        env.style.minHeight = '293px';
+      }, 700);
     }
   }
 
